@@ -1,0 +1,136 @@
+{
+	"name": "super-translate",
+	"displayName": "A-super-translate",
+	"description": "英语小白必备良药",
+	"version": "1.0.12",
+	"publisher": "xuedao",
+	"author": {
+		"name": "Xue Dao",
+		"email": "34347476@qq.com"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"homepage": "https://github.com/qq34347476/web/README.md",
+	"bugs": {
+		"url": "https://github.com/qq34347476/web/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/qq34347476/web"
+	},
+	"engines": {
+		"vscode": "^1.23.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"comment",
+		"translate",
+		"hover",
+		"google translate",
+		"翻译",
+		"注释",
+		"翻訳"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"icon": "doc/image/icon.png",
+	"main": "./client/out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "commentTranslate.select",
+				"title": "%commentTranslate.command.select%",
+				"category": "翻译"
+			},
+			{
+				"command": "commentTranslate.changeTargetLanguage",
+				"title": "%commentTranslate.command.changeTargetLanguage%",
+				"category": "翻译"
+			},
+			{
+				"command": "commentTranslate.replaceSelections",
+				"title": "%commentTranslate.command.replaceSelections%",
+				"category": "翻译"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "commentTranslate.replaceSelections",
+				"key": "alt+` alt+1"
+			},
+			{
+				"command": "commentTranslate.changeTargetLanguage",
+				"key": "alt+` alt+2"
+			},
+			{
+				"command": "commentTranslate.select",
+				"key": "alt+` alt+3"
+			}
+		],
+		"scripts": {
+			"vscode:prepublish": "cd client && npm run update-vscode && cd .. && npm run compile",
+			"compile:client": "tsc -p ./client/tsconfig.json",
+			"compile:server": "tsc -p ./server/tsconfig.json",
+			"watch:client": "tsc -w -p ./client/tsconfig.json",
+			"watch:server": "tsc -w -p ./server/tsconfig.json",
+			"compile": "npm run compile:client && npm run compile:server",
+			"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+			"test": "sh ./scripts/e2e.sh"
+		},
+		"configuration": [
+			{
+				"title": "Comment Translate Configuration",
+				"type": "Object",
+				"properties": {
+					"commentTranslate.targetLanguage": {
+						"type": "string",
+						"enum": [
+							"de",
+							"es",
+							"en",
+							"fr",
+							"it",
+							"ja",
+							"ko",
+							"ru",
+							"zh-CN",
+							"zh-TW"
+						],
+						"enumDescriptions": [
+							"German",
+							"Spanish",
+							"English",
+							"French",
+							"Italian",
+							"Japanese",
+							"Korean",
+							"Russian",
+							"Chinese (Simplified)",
+							"Chinese (Traditional)"
+						],
+						"description": "%commentTranslate.configuration.targetLanguage%"
+					},
+					"commentTranslate.multiLineMerge": {
+						"type": "boolean",
+						"default": false,
+						"description": "%commentTranslate.configuration.MultilineMerge%"
+					}
+				}
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/node": "^6.0.40",
+		"typescript": "^2.0.3"
+	},
+	"__metadata": {
+		"id": "71fb5a1d-a73f-4234-a943-e9b116c28c5f",
+		"publisherId": "1626ec3a-a09e-4ca5-b3c9-1338989394d1",
+		"publisherDisplayName": "雪导",
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1646631388598
+	}
+}
